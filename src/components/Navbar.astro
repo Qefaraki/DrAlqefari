@@ -9,13 +9,17 @@ const t = useTranslations(lang);
 const altLang = getAlternateLang(lang);
 const altPath = getLocalePath(altLang);
 
+const homePath = getLocalePath(lang);
+const isHome = Astro.url.pathname === homePath;
+const anchor = (hash: string) => isHome ? `#${hash}` : `${homePath}#${hash}`;
+
 const links = [
-  { href: '#services', label: t('nav.services') },
-  { href: '#testimonials', label: t('nav.testimonials') },
-  { href: '#faq', label: t('nav.faq') },
+  { href: anchor('services'), label: t('nav.services') },
+  { href: anchor('testimonials'), label: t('nav.testimonials') },
+  { href: anchor('faq'), label: t('nav.faq') },
   { href: lang === 'ar' ? '/cv/' : '/en/cv/', label: t('nav.cv') },
   { href: lang === 'ar' ? '/blog/' : '/en/blog/', label: t('nav.blog') },
-  { href: '#contact', label: t('nav.contact') },
+  { href: anchor('contact'), label: t('nav.contact') },
 ];
 ---
 
