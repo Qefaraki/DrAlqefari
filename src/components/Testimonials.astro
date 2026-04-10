@@ -1,0 +1,30 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const testimonials = [
+  { name: t('testimonials.1.name'), text: t('testimonials.1.text') },
+  { name: t('testimonials.2.name'), text: t('testimonials.2.text') },
+  { name: t('testimonials.3.name'), text: t('testimonials.3.text') },
+  { name: t('testimonials.4.name'), text: t('testimonials.4.text') },
+];
+---
+
+<section id="testimonials" class="border-t border-border/60 bg-bg-warm">
+  <div class="max-w-4xl mx-auto px-6 py-16 md:py-20">
+    <h2 class="text-xl md:text-2xl font-bold text-fg mb-10 reveal">{t('testimonials.title')}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 reveal">
+      {testimonials.map(item => (
+        <div>
+          <p class="text-fg-light leading-[1.8] text-[15px] mb-4">{item.text}</p>
+          <p class="font-bold text-fg text-sm">— {item.name}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

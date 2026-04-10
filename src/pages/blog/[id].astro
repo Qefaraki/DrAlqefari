@@ -1,0 +1,101 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations } from '../../i18n/utils';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter(p => p.data.lang === 'ar');
+  return posts.map(post => ({ params: { id: post.id }, props: { post } }));
+}
+
+const lang = 'ar' as const;
+const t = useTranslations(lang);
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const canonicalPath = `/blog/${post.id}/`;
+const postUrl = `https://dralqefari.com${canonicalPath}`;
+const postImage = post.data.image ? `https://dralqefari.com${post.data.image}` : undefined;
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  inLanguage: 'ar-SA',
+  author: {
+    '@type': 'Person',
+    name: 'Dr. Abdullah Alqefari',
+    url: 'https://dralqefari.com',
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Dr. Abdullah Alqefari',
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': postUrl,
+  },
+  ...(postImage && { image: postImage }),
+  ...(post.data.tags.length > 0 && { keywords: post.data.tags.join(', ') }),
+};
+---
+
+<Layout
+  lang={lang}
+  title={`${post.data.title} | ${t('meta.title')}`}
+  description={post.data.description}
+  image={postImage}
+  canonicalPath={canonicalPath}
+  type="article"
+  publishedDate={post.data.date.toISOString()}
+  tags={post.data.tags}
+  schema={blogPostingSchema}
+>
+  <Navbar lang={lang} />
+  <main class="pt-24 pb-20 min-h-screen">
+    <article class="max-w-3xl mx-auto px-6">
+      <!-- Back link -->
+      <div class="mb-8">
+        <a href="/blog/" class="text-sm text-muted hover:text-primary transition-colors">
+          ← {t('blog.backToBlog')}
+        </a>
+      </div>
+
+      <!-- Header -->
+      <header class="mb-12">
+        <div class="flex items-center gap-3 text-sm text-muted mb-4">
+          <time datetime={post.data.date.toISOString()}>
+            {post.data.date.toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          {post.data.tags.length > 0 && (
+            <div class="flex gap-2">
+              {post.data.tags.map((tag: string) => (
+                <span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs">{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-fg leading-tight mb-4">
+          {post.data.title}
+        </h1>
+        <p class="text-lg text-muted">{post.data.description}</p>
+      </header>
+
+      <!-- Content -->
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-bold prose-headings:text-fg
+        prose-p:text-fg/80 prose-p:leading-relaxed
+        prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-fg
+        prose-blockquote:border-s-primary prose-blockquote:text-fg/70
+        prose-li:text-fg/80
+      ">
+        <Content />
+      </div>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</Layout>

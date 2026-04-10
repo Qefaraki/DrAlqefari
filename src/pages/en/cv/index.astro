@@ -1,0 +1,157 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+const lang = 'en' as const;
+const t = useTranslations(lang);
+
+const education = [
+  t('cv.education.1'),
+  t('cv.education.2'),
+  t('cv.education.3'),
+  t('cv.education.4'),
+  t('cv.education.5'),
+];
+
+const realEstateItems = t('cv.training.realEstate.items').split(',');
+const coachingItems = t('cv.training.coaching.items').split(',');
+const skills = t('cv.skills.list').split(',');
+
+const experience = [
+  t('cv.experience.1'),
+  t('cv.experience.2'),
+  t('cv.experience.3'),
+  t('cv.experience.4'),
+  t('cv.experience.5'),
+  t('cv.experience.6'),
+];
+
+const whatsappMessage = 'Hello Dr. Abdullah, I would like to get in touch';
+const whatsappUrl = `https://wa.me/966539549922?text=${encodeURIComponent(whatsappMessage)}`;
+---
+
+<Layout
+  lang={lang}
+  title={`${t('cv.pageTitle')} | ${t('meta.title')}`}
+  description={`${t('cv.title1')} - ${t('cv.title2')}`}
+  canonicalPath="/en/cv/"
+>
+  <Navbar lang={lang} />
+  <main class="pt-24 pb-20 min-h-screen">
+    <div class="max-w-4xl mx-auto px-5 md:px-8">
+      <!-- Breadcrumb -->
+      <div class="mb-4">
+        <a href="/en/" class="text-sm text-muted hover:text-primary transition-colors">
+          {t('cv.backToHome')}
+        </a>
+      </div>
+
+      <!-- Header -->
+      <div class="mb-14">
+        <p class="text-primary text-sm font-semibold mb-3">{t('cv.pageTitle')}</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-fg mb-4">{t('cv.name')}</h1>
+        <p class="text-accent font-semibold text-lg mb-2">{t('cv.title1')}</p>
+        <p class="text-muted">{t('cv.title2')}</p>
+        <p class="text-muted">{t('cv.title3')}</p>
+      </div>
+
+      <div class="space-y-16 md:space-y-20">
+
+        <!-- Education -->
+        <section class="reveal">
+          <h2 class="text-xl md:text-2xl font-bold text-fg mb-8">{t('cv.education.title')}</h2>
+
+          <ol class="space-y-5 border-s-2 border-accent/30 ps-7">
+            {education.map((item) => (
+              <li class="relative">
+                <div class="absolute -start-[calc(1.75rem+5px)] top-1.5 w-2.5 h-2.5 rounded-full bg-accent/60"></div>
+                <p class="text-fg/80 leading-[1.85] text-[16px]">{item}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <!-- Training & Certifications -->
+        <section class="reveal">
+          <h2 class="text-xl md:text-2xl font-bold text-fg mb-8">{t('cv.training.title')}</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+            <div class="bg-bg-card rounded-3xl p-7 shadow-sm shadow-fg/[0.03] border border-border/40">
+              <h3 class="text-base font-bold text-fg mb-4">{t('cv.training.realEstate.title')}</h3>
+              <div class="flex flex-wrap gap-2">
+                {realEstateItems.map((item) => (
+                  <span class="px-3 py-1.5 rounded-full bg-primary/[0.06] text-primary/80 text-sm">
+                    {item.trim()}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div class="bg-bg-card rounded-3xl p-7 shadow-sm shadow-fg/[0.03] border border-border/40">
+              <h3 class="text-base font-bold text-fg mb-4">{t('cv.training.coaching.title')}</h3>
+              <div class="flex flex-wrap gap-2">
+                {coachingItems.map((item) => (
+                  <span class="px-3 py-1.5 rounded-full bg-primary/[0.06] text-primary/80 text-sm">
+                    {item.trim()}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-5 bg-accent/[0.06] border border-accent/15 rounded-2xl">
+            <span class="text-3xl font-bold text-accent">30+</span>
+            <p class="text-fg/70 text-[15px]">{t('cv.training.courses')}</p>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="reveal">
+          <h2 class="text-xl md:text-2xl font-bold text-fg mb-8">{t('cv.skills.title')}</h2>
+
+          <div class="flex flex-wrap gap-2.5">
+            {skills.map((skill) => (
+              <span class="px-4 py-2 rounded-full bg-primary/[0.06] text-primary font-medium text-sm">
+                {skill.trim()}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="reveal">
+          <h2 class="text-xl md:text-2xl font-bold text-fg mb-8">{t('cv.experience.title')}</h2>
+
+          <ul class="space-y-4">
+            {experience.map((item) => (
+              <li class="flex items-start gap-3">
+                <div class="w-2 h-2 rounded-full bg-accent mt-2.5 shrink-0"></div>
+                <p class="text-fg/80 leading-[1.85] text-[16px]">{item}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- CTA -->
+        <section class="reveal border-t border-border/60 pt-12">
+          <h2 class="text-xl md:text-2xl font-bold text-fg mb-3">{t('cv.cta')}</h2>
+          <p class="text-muted mb-6 text-[15px]">
+            {t('contact.email')} · {t('contact.phone')}
+          </p>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-primary underline underline-offset-2 hover:text-primary-light"
+          >
+            WhatsApp →
+          </a>
+        </section>
+
+      </div>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Layout>

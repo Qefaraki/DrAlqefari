@@ -1,0 +1,29 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const cards = [
+  { title: t('services.card1.title'), desc: t('services.card1.desc') },
+  { title: t('services.card2.title'), desc: t('services.card2.desc') },
+  { title: t('services.card3.title'), desc: t('services.card3.desc') },
+];
+---
+
+<section id="services" class="border-t border-border/60">
+  <div class="max-w-4xl mx-auto px-6 py-16 md:py-20">
+    <h2 class="text-xl md:text-2xl font-bold text-fg mb-10 reveal">{t('services.title')}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 reveal">
+      {cards.map(c => (
+        <div>
+          <h3 class="text-lg font-bold text-fg mb-3">{c.title}</h3>
+          <p class="text-fg-light text-[15px] leading-[1.75]">{c.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

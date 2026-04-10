@@ -1,0 +1,33 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const stats = [
+  { value: t('cvHighlights.stat1.value'), label: t('cvHighlights.stat1.label') },
+  { value: t('cvHighlights.stat2.value'), label: t('cvHighlights.stat2.label') },
+  { value: t('cvHighlights.stat3.value'), label: t('cvHighlights.stat3.label') },
+  { value: t('cvHighlights.stat4.value'), label: t('cvHighlights.stat4.label') },
+];
+---
+
+<section id="cv" class="border-t border-border/60">
+  <div class="max-w-4xl mx-auto px-6 py-16 md:py-20 reveal">
+    <h2 class="text-xl md:text-2xl font-bold text-fg mb-8">{t('cvHighlights.title')}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      {stats.map(s => (
+        <div>
+          <p class="text-2xl font-bold text-primary mb-1">{s.value}</p>
+          <p class="text-sm text-muted leading-snug">{s.label}</p>
+        </div>
+      ))}
+    </div>
+    <a href={lang === 'ar' ? '/cv/' : '/en/cv/'} class="text-sm text-primary underline underline-offset-2 hover:text-primary-light">
+      {t('cvHighlights.cta')} →
+    </a>
+  </div>
+</section>

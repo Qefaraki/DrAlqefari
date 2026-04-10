@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Services from '../../components/Services.astro';
+import CvHighlights from '../../components/CvHighlights.astro';
+import Photos from '../../components/Photos.astro';
+import PhotoBanner from '../../components/PhotoBanner.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import FAQ from '../../components/FAQ.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'en' as const;
+---
+
+<Layout lang={lang} canonicalPath="/en/">
+  <Navbar lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Services lang={lang} />
+    <CvHighlights lang={lang} />
+    <Photos lang={lang} />
+    <Testimonials lang={lang} />
+    <PhotoBanner />
+    <FAQ lang={lang} />
+    <Contact lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

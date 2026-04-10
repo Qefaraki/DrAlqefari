@@ -1,0 +1,63 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const categories = [
+  { title: t('faq.cat1'), questions: Array.from({ length: 8 }, (_, i) => ({ q: t(`faq.${i + 1}.q` as any), a: t(`faq.${i + 1}.a` as any) })) },
+  { title: t('faq.cat2'), questions: Array.from({ length: 11 }, (_, i) => ({ q: t(`faq.${i + 9}.q` as any), a: t(`faq.${i + 9}.a` as any) })) },
+  { title: t('faq.cat3'), questions: Array.from({ length: 6 }, (_, i) => ({ q: t(`faq.${i + 20}.q` as any), a: t(`faq.${i + 20}.a` as any) })) },
+  { title: t('faq.cat4'), questions: Array.from({ length: 7 }, (_, i) => ({ q: t(`faq.${i + 26}.q` as any), a: t(`faq.${i + 26}.a` as any) })) },
+  { title: t('faq.cat5'), questions: Array.from({ length: 4 }, (_, i) => ({ q: t(`faq.${i + 33}.q` as any), a: t(`faq.${i + 33}.a` as any) })) },
+  { title: t('faq.cat6'), questions: Array.from({ length: 2 }, (_, i) => ({ q: t(`faq.${i + 37}.q` as any), a: t(`faq.${i + 37}.a` as any) })) },
+];
+---
+
+<section id="faq" class="border-t border-border/60">
+  <div class="max-w-4xl mx-auto px-4 md:px-6 pt-10 pb-16 md:py-20">
+    <h2 class="text-xl md:text-2xl font-bold text-fg mb-8 reveal">{t('faq.title')}</h2>
+    <div class="divide-y divide-border/60 reveal">
+      {categories.map(cat => (
+        <details class="group/cat py-4">
+          <summary class="min-h-11 flex items-center justify-between gap-4 cursor-pointer list-none select-none">
+            <span class="font-semibold text-fg">
+              {cat.title}
+              <span class="text-muted/60 font-normal text-sm ms-1" aria-label={`${cat.questions.length} ${lang === 'ar' ? 'أسئلة' : 'questions'}`}>({cat.questions.length})</span>
+            </span>
+            <svg class="w-4 h-4 text-muted shrink-0 group-open/cat:rotate-90 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </summary>
+          <div class="mt-3 ps-2 md:ps-4 border-s border-border/40 divide-y divide-border/40">
+            {cat.questions.map(faq => (
+              <details class="group/faq py-3">
+                <summary class="min-h-11 flex items-center justify-between gap-4 cursor-pointer list-none select-none">
+                  <span class="font-medium text-fg text-[15px]">{faq.q}</span>
+                  <span class="text-muted text-sm shrink-0 group-open/faq:rotate-45 transition-transform duration-200">+</span>
+                </summary>
+                <p class="faq-answer text-fg-light leading-relaxed md:leading-[1.8] text-[15px] mt-2 md:pe-8">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  details .faq-answer {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.2s ease, max-height 0.2s ease;
+  }
+  details[open] .faq-answer {
+    opacity: 1;
+    max-height: 20rem;
+  }
+</style>

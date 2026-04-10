@@ -1,0 +1,36 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const whatsappMessage = lang === 'ar'
+  ? 'مرحبا دكتور عبدالله، أرغب بحجز جلسة مهداف'
+  : 'Hello Dr. Abdullah, I would like to book a coaching session';
+const whatsappUrl = `https://wa.me/966539549922?text=${encodeURIComponent(whatsappMessage)}`;
+---
+
+<section id="contact" class="border-t border-border/60">
+  <div class="max-w-4xl mx-auto px-6 py-16 md:py-20 reveal">
+    <h2 class="text-xl md:text-2xl font-bold text-fg mb-4">{t('contact.title')}</h2>
+    <p class="text-fg-light leading-[1.8] mb-6 max-w-lg">
+      {lang === 'ar'
+        ? 'تواصل معي مباشرة عبر واتساب أو البريد الإلكتروني لحجز جلسة أو الاستفسار.'
+        : 'Reach out directly via WhatsApp or email to book a session or ask questions.'}
+    </p>
+    <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary-light">
+        WhatsApp
+      </a>
+      <a href={`mailto:${t('contact.email')}`} class="text-primary underline underline-offset-2 hover:text-primary-light">
+        {t('contact.email')}
+      </a>
+      <a href={`tel:${t('contact.phone').replace(/\s/g, '')}`} class="text-primary underline underline-offset-2 hover:text-primary-light" dir="ltr">
+        {t('contact.phone')}
+      </a>
+    </div>
+  </div>
+</section>

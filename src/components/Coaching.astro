@@ -1,0 +1,26 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="coaching" class="border-t border-border/60">
+  <div class="max-w-4xl mx-auto px-6 py-16 md:py-20">
+    <div class="reveal grid grid-cols-1 md:grid-cols-[1fr_280px] gap-10 items-start">
+      <div>
+        <h2 class="text-xl md:text-2xl font-bold text-fg mb-5">{t('coaching.title')}</h2>
+        <blockquote class="text-fg-light leading-[1.85] mb-3 italic">
+          "{t('coaching.definition')}"
+        </blockquote>
+        <p class="text-muted text-sm">— {t('coaching.source')}</p>
+      </div>
+      <div>
+        <img src="/images/coaching.jpg" alt={lang === 'ar' ? 'جلسة مهداف' : 'Coaching'} width="280" height="187" class="w-full" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>

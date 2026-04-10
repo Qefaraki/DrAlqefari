@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const lang = 'ar' as const;
+---
+
+<Layout lang={lang} title="404 - Page Not Found" noindex={true} schema={null}>
+  <div class="min-h-screen flex items-center justify-center bg-bg">
+    <div class="text-center px-6">
+      <h1 class="text-6xl font-bold text-primary mb-4">404</h1>
+      <p class="text-lg text-fg/60 mb-8">
+        الصفحة غير موجودة | Page not found
+      </p>
+      <div class="flex gap-4 justify-center">
+        <a href="/" class="px-6 py-3 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors">
+          الرئيسية
+        </a>
+        <a href="/en/" class="px-6 py-3 border border-primary text-primary rounded-full hover:bg-primary hover:text-white transition-colors">
+          Home
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

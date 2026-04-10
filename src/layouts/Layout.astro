@@ -1,0 +1,65 @@
+---
+import '@fontsource/ibm-plex-sans-arabic/300.css';
+import '@fontsource/ibm-plex-sans-arabic/400.css';
+import '@fontsource/ibm-plex-sans-arabic/500.css';
+import '@fontsource/ibm-plex-sans-arabic/700.css';
+import '../styles/global.css';
+import type { Lang } from '../i18n/utils';
+import SEO from '../components/SEO.astro';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalPath?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  publishedDate?: string;
+  tags?: string[];
+  schema?: object | null;
+}
+
+const {
+  lang,
+  title,
+  description,
+  image,
+  canonicalPath,
+  type,
+  noindex,
+  publishedDate,
+  tags,
+  schema,
+} = Astro.props;
+const dir = lang === 'ar' ? 'rtl' : 'ltr';
+---
+<!doctype html>
+<html lang={lang} dir={dir}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <SEO
+    lang={lang}
+    title={title}
+    description={description}
+    image={image}
+    canonicalPath={canonicalPath}
+    type={type}
+    noindex={noindex}
+    publishedDate={publishedDate}
+    tags={tags}
+    schema={schema}
+  />
+</head>
+<body class="bg-bg text-fg font-sans antialiased">
+  <slot />
+  <script>
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

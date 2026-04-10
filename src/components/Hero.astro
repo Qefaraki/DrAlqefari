@@ -1,0 +1,76 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Split bio into headline (first sentence) and body (rest)
+const bio = t('about.bio');
+const periodMatch = bio.match(/^(.+?\.)\s*(.*)$/);
+const headline = periodMatch ? periodMatch[1] : bio;
+const body = periodMatch ? periodMatch[2] : '';
+---
+
+<section>
+  <!-- Mobile: full bleed photo with text overlay -->
+  <div class="md:hidden">
+    <div class="relative">
+      <div class="aspect-[4/5] overflow-hidden">
+        <img
+          src="/images/profile.jpg"
+          alt={t('about.title')}
+          class="w-full h-full object-cover object-top"
+        />
+      </div>
+      <div class="absolute bottom-0 inset-x-0 px-6 pt-32 pb-10 bg-gradient-to-t from-[#111] via-[#111]/95 to-transparent">
+        <p class="text-[12px] text-white/60 font-semibold tracking-wider uppercase mb-3">
+          {t('about.subtitle')}
+        </p>
+        <h1 class="text-white text-lg font-bold leading-[1.55] mb-3">
+          {headline}
+        </h1>
+        <p class="text-white/65 text-[13px] leading-[1.75] mb-5">
+          {body}
+        </p>
+        <a href="#contact" class="inline-flex items-center gap-2 bg-white text-[#111] font-semibold text-[13px] px-5 py-2.5 hover:bg-primary hover:text-white transition-colors">
+          {lang === 'ar' ? 'تواصل معي' : 'Get in touch'}
+          <span class="rtl:rotate-180">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop: photo first (left in EN, right in AR) -->
+  <div class="hidden md:grid md:grid-cols-2 min-h-[600px]">
+    <!-- Photo column -->
+    <div class="relative bg-[#111] overflow-hidden">
+      <img
+        src="/images/profile.jpg"
+        alt={t('about.title')}
+        class="absolute inset-0 w-full h-full object-cover object-top"
+      />
+    </div>
+
+    <!-- Text column -->
+    <div class="flex items-center bg-bg">
+      <div class="px-12 lg:px-16 py-16 max-w-xl">
+        <p class="text-sm font-semibold text-primary tracking-wider uppercase mb-5">
+          {t('about.subtitle')}
+        </p>
+        <h1 class="text-fg text-2xl lg:text-3xl font-bold leading-[1.4] mb-6">
+          {headline}
+        </h1>
+        <p class="text-fg-light leading-[1.85] text-[15px] mb-8">
+          {body}
+        </p>
+        <a href="#contact" class="inline-flex items-center gap-2 bg-fg text-white font-semibold text-sm px-7 py-3.5 hover:bg-primary transition-colors">
+          {lang === 'ar' ? 'تواصل معي' : 'Get in touch'}
+          <span class="rtl:rotate-180">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
