@@ -33,7 +33,7 @@ const t = useTranslations(lang);
 
 const finalTitle = title ?? t('meta.title');
 const finalDescription = description ?? t('meta.description');
-const finalImage = image ?? `${SITE}/images/profile.jpg`;
+const finalImage = image ?? `${SITE}/images/profile.webp`;
 
 // Build hreflang URLs from the canonical path. The path is treated as the
 // "language-neutral" path; for English we prepend /en, for Arabic we use it as-is.
@@ -55,7 +55,7 @@ const defaultSchema = {
   alternateName: 'د. عبدالله القفاري',
   jobTitle: 'University Professor & Coach',
   url: SITE,
-  image: `${SITE}/images/profile.jpg`,
+  image: `${SITE}/images/profile.webp`,
   sameAs: [
     'https://instagram.com/DrAlqefari',
     'https://x.com/DrAlqefari',
