@@ -11,6 +11,9 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   integrations: [sitemap()],
+  markdown: {
+    smartypants: false,
+  },
   vite: {
     plugins: [tailwindcss()],
   },
