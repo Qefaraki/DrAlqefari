@@ -18,7 +18,7 @@ const stats = [
 <section id="cv" class="border-t border-border/60">
   <div class="max-w-4xl mx-auto px-6 py-16 md:py-20 reveal">
     <h2 class="text-xl md:text-2xl font-bold text-fg mb-8">{t('cvHighlights.title')}</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
       {stats.map(s => (
         <div>
           <p class="text-2xl font-bold text-primary mb-1">{s.value}</p>
@@ -26,8 +26,14 @@ const stats = [
         </div>
       ))}
     </div>
-    <a href={lang === 'ar' ? '/cv/' : '/en/cv/'} class="text-sm text-primary underline underline-offset-2 hover:text-primary-light">
-      {t('cvHighlights.cta')} →
-    </a>
+    <div class="flex justify-center">
+      <a
+        href={lang === 'ar' ? '/cv/' : '/en/cv/'}
+        class="inline-flex items-center gap-2.5 text-[16px] md:text-[17px] font-semibold text-primary hover:text-primary-light transition-colors"
+      >
+        {t('cvHighlights.cta')}
+        <span class="rtl:rotate-180 text-[18px]">→</span>
+      </a>
+    </div>
   </div>
 </section>

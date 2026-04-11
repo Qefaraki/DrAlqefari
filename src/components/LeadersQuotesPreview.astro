@@ -25,56 +25,51 @@ const featured = [
     image: '/images/leaders/eric-schmidt.webp',
   },
   {
-    name: t('leaders.gawande.name'),
-    role: t('leaders.gawande.role'),
-    quote: t('leaders.gawande.quote'),
-    source: t('leaders.gawande.source'),
-    image: '/images/leaders/atul-gawande.webp',
+    name: t('leaders.bezos.name'),
+    role: t('leaders.bezos.role'),
+    quote: t('leaders.bezos.quote'),
+    source: t('leaders.bezos.source'),
+    image: '/images/leaders/jeff-bezos.webp',
   },
 ];
 ---
 
 <section id="leaders" class="border-t border-border/60">
-  <div class="max-w-4xl mx-auto px-6 py-16 md:py-20">
-    <div class="mb-12 reveal">
+  <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+    <div class="mb-10 reveal">
       <h2 class="text-xl md:text-2xl font-bold text-fg mb-3">{t('leaders.title')}</h2>
       <p class="text-muted text-[15px] leading-[1.8] max-w-2xl">{t('leaders.subtitle')}</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 reveal">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
       {featured.map((item) => (
-        <article class="flex flex-col">
-          <div class="flex items-center gap-3 mb-4">
-            <img
-              src={item.image}
-              alt={item.name}
-              width="48"
-              height="48"
-              class="w-12 h-12 rounded-full object-cover bg-bg-warm border border-border/40 shrink-0"
-              loading="lazy"
-            />
-            <div class="min-w-0">
-              <p class="font-bold text-fg text-[14px] leading-tight">{item.name}</p>
-              <p class="text-muted text-[12px] leading-tight mt-0.5 truncate">{item.role}</p>
-            </div>
+        <a
+          href={fullPagePath}
+          class="group relative block rounded-2xl overflow-hidden bg-fg/90 min-h-[420px] md:min-h-[460px] flex flex-col justify-end shadow-lg shadow-fg/10 hover:shadow-xl hover:shadow-fg/15 transition-shadow"
+        >
+          <img
+            src={item.image}
+            alt={item.name}
+            class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 via-35% to-black/5"></div>
+          <div class="relative p-6 md:p-7 text-white">
+            <p class="text-accent text-[11px] font-semibold tracking-wider mb-1.5 uppercase">{item.role}</p>
+            <h3 class="text-xl md:text-[22px] font-bold mb-3 leading-tight">{item.name}</h3>
+            <p class="text-white/85 text-[13px] leading-[1.75] line-clamp-3">{item.quote}</p>
           </div>
-          <blockquote class="text-fg-light leading-[1.85] text-[14px] mb-3 border-s-2 border-accent/30 ps-3">
-            {item.quote}
-          </blockquote>
-          {item.source && (
-            <p class="text-muted text-[11px] mt-auto pt-2">{item.source}</p>
-          )}
-        </article>
+        </a>
       ))}
     </div>
 
-    <div class="mt-12 reveal">
+    <div class="mt-12 flex justify-center reveal">
       <a
         href={fullPagePath}
-        class="inline-flex items-center gap-2 text-[14px] font-semibold text-primary hover:text-primary-light transition-colors"
+        class="inline-flex items-center gap-2.5 text-[16px] md:text-[17px] font-semibold text-primary hover:text-primary-light transition-colors"
       >
         {t('leaders.readMore')}
-        <span class="rtl:rotate-180">→</span>
+        <span class="rtl:rotate-180 text-[18px]">→</span>
       </a>
     </div>
   </div>
