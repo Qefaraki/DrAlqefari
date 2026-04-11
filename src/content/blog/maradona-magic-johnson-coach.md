@@ -3,6 +3,7 @@ title: "لماذا أفلس مارادونا وبقي ماجيك جونسون م
 description: "الكوتش: مرآةٌ حقيقية في تطوير الثروة وحمايتها"
 date: 2026-04-11
 lang: ar
+image: /images/blog/maradona-magic-johnson.webp
 tags: ["كوتشنق", "بناء الثروة", "القيادة"]
 ---
 
