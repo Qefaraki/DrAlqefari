@@ -87,10 +87,14 @@ const blogPostingSchema = {
       <!-- Content -->
       <div class="prose prose-lg max-w-none
         prose-headings:font-bold prose-headings:text-fg
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-2
+        prose-h4:text-base prose-h4:font-semibold prose-h4:mt-6 prose-h4:mb-2
         prose-p:text-fg/80 prose-p:leading-relaxed
         prose-a:text-primary prose-a:no-underline hover:prose-a:underline
         prose-strong:text-fg
-        prose-blockquote:border-s-primary prose-blockquote:text-fg/70
+        prose-blockquote:border-s-primary prose-blockquote:text-fg/70 prose-blockquote:not-italic
+        [&_blockquote_p]:before:content-none [&_blockquote_p]:after:content-none
         prose-li:text-fg/80
       ">
         <Content />
