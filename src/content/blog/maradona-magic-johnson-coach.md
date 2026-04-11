@@ -299,9 +299,11 @@ tags: ["كوتشنق", "بناء الثروة", "القيادة"]
 >
 > **د. عبدالله القفاري**
 
-## 📚 المصادر والمراجع
+<div class="mt-16 pt-8 border-t border-border text-sm text-fg/55 [&_h3]:text-xs [&_h3]:uppercase [&_h3]:tracking-wider [&_h3]:font-semibold [&_h3]:text-fg/70 [&_h3]:mt-6 [&_h3]:mb-2 [&_ul]:my-2 [&_li]:my-1 [&_li]:leading-relaxed">
 
-### الدراسات الأكاديمية
+### المصادر والمراجع
+
+#### الدراسات الأكاديمية
 
 - Stanford Graduate School of Business، 2013 Executive Coaching Survey
 - Stanford GSB Insights، "Lonely at the Top Resonates for Most CEOs"
@@ -311,15 +313,15 @@ tags: ["كوتشنق", "بناء الثروة", "القيادة"]
 - National Bureau of Economic Research (NBER)، Working Paper No. 21085: "Bankruptcy Rates among NFL Players"
 - The New Yorker، "Personal Best" by Atul Gawande (2011)
 
-### المصادر الصحفية
+#### المصادر الصحفية
 
 - Sports Illustrated، "How (and Why) Athletes Go Broke" by Pablo S. Torre (2009)
 - TED Talks، Bill Gates: "Everyone Needs a Coach"
 - ESPN 30 for 30، "Broke" (وثائقي)
 - The Guardian, The Sun, Give Me Sport, Planet Football، تقارير عن لاعبين أعلنوا إفلاسهم
 
-### الكتب
+#### الكتب
 
 - *Trillion Dollar Coach*، Eric Schmidt, Jonathan Rosenberg & Alan Eagle (عن الكوتش بيل كامبل)
 
-> ⚠️ ملاحظة: قد تحتاج إلى اشتراك للاطلاع على بعض الدراسات الكاملة.
+</div>
