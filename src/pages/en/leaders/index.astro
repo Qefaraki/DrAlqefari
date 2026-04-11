@@ -1,0 +1,38 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import LeadersQuotesFull from '../../../components/LeadersQuotesFull.astro';
+import Contact from '../../../components/Contact.astro';
+import Footer from '../../../components/Footer.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+const lang = 'en' as const;
+const t = useTranslations(lang);
+---
+
+<Layout
+  lang={lang}
+  title={`${t('leaders.pageTitle')} | ${t('meta.title')}`}
+  description={t('leaders.intro')}
+  canonicalPath="/en/leaders/"
+>
+  <Navbar lang={lang} />
+  <main class="pt-16 pb-4 min-h-screen">
+    <div class="max-w-4xl mx-auto px-5 md:px-8 mb-10">
+      <div class="mb-4">
+        <a href="/en/" class="text-sm text-muted hover:text-primary transition-colors">
+          {t('leaders.backToHome')}
+        </a>
+      </div>
+      <div class="mb-2 pt-6">
+        <p class="text-primary text-sm font-semibold mb-3">{t('nav.leaders')}</p>
+        <h1 class="text-3xl md:text-5xl font-bold text-fg mb-6 leading-tight">{t('leaders.pageTitle')}</h1>
+        <p class="text-fg-light text-[16px] md:text-[17px] leading-[1.95] max-w-3xl">{t('leaders.intro')}</p>
+      </div>
+    </div>
+
+    <LeadersQuotesFull lang={lang} />
+    <Contact lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

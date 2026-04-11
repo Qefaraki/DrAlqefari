@@ -16,6 +16,7 @@ const anchor = (hash: string) => isHome ? `#${hash}` : `${homePath}#${hash}`;
 const links = [
   { href: anchor('services'), label: t('nav.services') },
   { href: anchor('testimonials'), label: t('nav.testimonials') },
+  { href: lang === 'ar' ? '/leaders/' : '/en/leaders/', label: t('nav.leaders') },
   { href: anchor('faq'), label: t('nav.faq') },
   { href: lang === 'ar' ? '/cv/' : '/en/cv/', label: t('nav.cv') },
   { href: lang === 'ar' ? '/blog/' : '/en/blog/', label: t('nav.blog') },
@@ -29,9 +30,9 @@ const links = [
       <img src="/images/logo.png" alt="" width="28" height="28" />
       <span class="text-fg font-bold text-[15px]">{lang === 'ar' ? 'د. عبدالله القفاري' : 'Dr. Alqefari'}</span>
     </a>
-    <nav class="hidden md:flex items-center gap-6">
+    <nav class="hidden md:flex items-center gap-5">
       {links.map(l => (
-        <a href={l.href} class="text-[13px] text-muted hover:text-fg">{l.label}</a>
+        <a href={l.href} class="text-[13px] text-muted hover:text-fg whitespace-nowrap">{l.label}</a>
       ))}
       <a href={altPath} class="text-[13px] text-primary hover:text-primary-light">{getAlternateLabel(lang)}</a>
     </nav>

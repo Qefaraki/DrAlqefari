@@ -8,7 +8,7 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const whatsappMessage = lang === 'ar'
-  ? 'مرحبا دكتور عبدالله، أرغب بحجز جلسة مهداف'
+  ? 'السلام عليكم دكتور عبدالله أرغب بحجز جلسة مهداف'
   : 'Hello Dr. Abdullah, I would like to book a coaching session';
 const whatsappUrl = `https://wa.me/966539549922?text=${encodeURIComponent(whatsappMessage)}`;
 ---
@@ -19,7 +19,7 @@ const whatsappUrl = `https://wa.me/966539549922?text=${encodeURIComponent(whatsa
     <h2 class="text-xl md:text-2xl font-bold text-fg mb-4">{t('contact.title')}</h2>
     <p class="text-fg-light leading-[1.8] mb-6 max-w-lg">
       {lang === 'ar'
-        ? 'تواصل معي مباشرة عبر واتساب أو البريد الإلكتروني لحجز جلسة أو الاستفسار.'
+        ? 'للتواصل المباشر عبر واتساب أو البريد الإلكتروني لحجز جلسة أو الاستفسار.'
         : 'Reach out directly via WhatsApp or email to book a session or ask questions.'}
     </p>
     <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">

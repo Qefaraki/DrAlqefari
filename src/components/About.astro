@@ -27,7 +27,7 @@ const t = useTranslations(lang);
       <h2 class="text-4xl md:text-5xl font-bold text-fg mb-8 leading-[1.25]">{t('hero.hook')}</h2>
       <p class="text-fg-light leading-[1.85] text-lg mb-8">{t('hero.stat')}</p>
       <a href="#contact" class="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:text-primary-light transition-colors">
-        {lang === 'ar' ? 'اعرف كيف أساعدك' : 'See how I can help'}
+        {lang === 'ar' ? 'اعرف كيف يساعدك الدكتور' : 'See how I can help'}
         <span class="rtl:rotate-180">→</span>
       </a>
     </div>
@@ -43,7 +43,7 @@ const t = useTranslations(lang);
           <blockquote class="text-fg-light leading-[1.85] text-[15px] italic mb-4">
             "{t('coaching.definition')}"
           </blockquote>
-          <p class="text-muted text-sm">— {t('coaching.source')}</p>
+          <p class="text-muted text-sm">{lang === 'ar' ? t('coaching.source') : `— ${t('coaching.source')}`}</p>
         </div>
       </div>
 
